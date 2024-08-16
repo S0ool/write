@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<!--    <link rel="stylesheet" href="{% static 'app/style.css' %}">-->
+    <style>
+        body{
+            background:{{ color }};
+        }
+    </style>
+</head>
+<body>
+<a href="{% url 'post_id' %}" style="color:blue; font-size: 30px">change: post title > post title + post id </a><br>
+<a href="{% url 'delete_posts' %}" style="color:blue; font-size: 30px">DELETE ODD NUMBERS </a><br>
+<a href="{% url 'add_posts' %}" style="color:blue; font-size: 30px">ADD 10 POSTS </a><br>
+    <h2 style="color:blue">Список постов</h2>
+    <div>
+        {% for post in data %}
+        <a href="{% url 'post_info' post_id=post.id %}" style="color:blue">{{ forloop.counter }}. {{post.title}}</a><br><!--   forloop.counter отчитывает кол-во цикла с 1     -->
+        {% endfor %}
+        {% if color == "blue" %}
+        <h1 style="color:white">Мде...</h1>
+        {% endif %}
+    </div>
+</body>
+</html>
